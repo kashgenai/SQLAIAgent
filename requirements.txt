@@ -1,0 +1,12 @@
+python-dotenv
+pydantic    
+langchain
+langchain-community
+langchain-openai
+langchain-core
+langchain-groq
+langchain-google-genai
+faiss-cpu
+pypdf
+faiss
+sqlite-utils

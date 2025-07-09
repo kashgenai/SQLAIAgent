@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ table_name }} - SQL Agent Dashboard</title>
+    <style>
+        /* Same base CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .data-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .schema-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .schema-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .schema-table th {
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .schema-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 {{ table_name }}</h1>
+            <p>Table data and schema information</p>
+        </div>
+        
+        <div class="nav">
+            <a href="/">🏠 Dashboard</a>
+            <a href="/tables">📊 Database Tables</a>
+            <a href="/tables" class="active">📋 {{ table_name }}</a>
+        </div>
+        
+        <div class="content">
+            <!-- Schema Information -->
+            <div class="schema-section">
+                <h2>📋 Schema Information</h2>
+                <table class="schema-table">
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Not Null</th>
+                            <th>Default</th>
+                            <th>Primary Key</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for column in schema %}
+                        <tr>
+                            <td>{{ column[1] }}</td>
+                            <td>{{ column[2] }}</td>
+                            <td>{{ "Yes" if column[3] else "No" }}</td>
+                            <td>{{ column[4] if column[4] else "-" }}</td>
+                            <td>{{ "Yes" if column[5] else "No" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Data Table -->
+            <h2>📊 Table Data ({{ data|length }} rows)</h2>
+            {% if data %}
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        {% for column in columns %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        {% for column in columns %}
+                        <td>{{ row[column] if row[column] is not none else "-" }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No data available in this table.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+    

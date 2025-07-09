@@ -1,0 +1,9 @@
+The world goes through multiple cycles of innovation. The cosmic law that governs all. Throughout anthropological history there have been these cycles of innovation, which have changed the course of the world, taking it in a completely new direction.
+
+For example, the discovery of agriculture. This reconditioned the entire human nature from that of hunter-gatherers to creators, growers, and settlers. Many great civilizations rose on the banks of great rivers of the world. Consider any other instance — silicone reimagined the fields of medicine and astrophysics, and the steam engine ushered in the golden age of mass-produced goods, and commerce.
+
+The entire world is currently going through such a cycle of innovation with AI-powered digitalization right there in the driver’s seat. Digitalization has taken over each point of business and personal fronts ranging from Internet of Things and Augmented Reality to Generative AI — the protagonist of this story.
+
+This guide helps readers understand in-depth about Generative AI, its untapped potential, and how to harness its capabilities to win big in the business world.
+
+generate 3 tables schema with Create DDL named tables with Customer,Offers,Products with multiple columns considering offer management  with offer effective date and expiration date ,status and many more as per your knowledge. and need to have relation between customer,offer and products. Generate schema with each column full description which this will be used ingest to RAG architecture to genrate sql out of it. please generate as per standards for RAG and to store in vector db

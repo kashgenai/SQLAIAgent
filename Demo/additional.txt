@@ -1,0 +1,52 @@
+from langchain.prompts import ChatPromptTemplate
+from langchain.prompts.chat import SystemMessagePromptTemplate, HumanMessagePromptTemplate
+
+prompt = ChatPromptTemplate.from_messages([
+    SystemMessagePromptTemplate.from_template(
+        "You are an expert SQL generator. You are given a database schema and a question."
+    ),
+    HumanMessagePromptTemplate.from_template("""
+Schema:
+{schema}
+
+Question:
+{question}
+
+### Instructions:
+- Only respond with the SQL query.
+- Do not add commentary or explanations.
+- Keep SQL formatted properly using line breaks.
+""")
+])
+
+
+
+from langchain.prompts import PromptTemplate
+
+prompt = PromptTemplate.from_template("""
+You are a SQL expert. Based on the following database schema:
+
+{schema}
+
+Answer the user question using valid SQL.
+
+### Question:
+{question}
+
+### Instructions:
+- Only output a valid SQL query.
+- Do not include explanations.
+- Format the SQL with proper line breaks and indentation.
+- Use table aliases where appropriate.
+- Use double quotes for identifiers if needed.
+
+### SQL:
+""")
+
+
+formatted_prompt = prompt.format(
+    schema="Table: Customer (customer_id, full_name, email)\nTable: Offer (offer_id, customer_id, offer_description)\nTable: Product (product_id, product_name)",
+    question="List customer names and their offer descriptions"
+)
+
+print(formatted_prompt)

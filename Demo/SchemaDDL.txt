@@ -1,0 +1,46 @@
+CREATE TABLE Customer (
+    customer_id TEXT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone_number VARCHAR(20),
+    address TEXT,
+    customer_segment VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Offer (
+    offer_id TEXT PRIMARY KEY,
+    offer_title VARCHAR(255) NOT NULL,
+    offer_description TEXT,
+    offer_type VARCHAR(100),
+    discount_percentage REAL,
+    fixed_discount_amount REAL,
+    effective_date DATE NOT NULL,
+    expiration_date DATE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    customer_id TEXT,
+    product_id TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_offer_customer FOREIGN KEY (customer_id)
+        REFERENCES Customer (customer_id)
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_offer_product FOREIGN KEY (product_id)
+        REFERENCES Product (product_id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE Product (
+    product_id TEXT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    sku VARCHAR(100) UNIQUE NOT NULL,
+    category VARCHAR(100),
+    price REAL NOT NULL,
+    description TEXT,
+    available INTEGER DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

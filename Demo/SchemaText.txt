@@ -1,0 +1,71 @@
+Table: CUSTOMER
+Description: Stores information about customers who are eligible for offers or have made purchases. Each customer has a unique ID and basic profile data.
+
+customer_id: Unique identifier for the customer (UUID).
+
+full_name: Full name of the customer.
+
+email: Email address of the customer. Must be unique.
+
+phone_number: Optional phone number for contacting the customer.
+
+address: Full physical mailing address of the customer.
+
+customer_segment: Category or classification of the customer (e.g., Retail, Wholesale, VIP).
+
+created_at: Timestamp indicating when the customer record was created.
+
+updated_at: Timestamp indicating when the customer record was last modified.
+
+
+Table: PRODUCT
+Description: Contains information about products that can have offers applied to them. Each product is uniquely identified and categorized.
+
+product_id: Unique identifier for the product (UUID).
+
+product_name: Human-readable name of the product.
+
+sku: Unique stock keeping unit assigned to the product.
+
+category: Category under which the product is classified (e.g., Electronics, Apparel).
+
+price: Standard unit price of the product.
+
+description: Long-form textual description of the product.
+
+available: Boolean flag indicating whether the product is currently available for purchase.
+
+created_at: Timestamp when the product was added to the system.
+
+updated_at: Timestamp of the most recent update to the product record.
+
+
+
+Table: OFFER
+Description: Tracks promotional offers that apply to specific products and may optionally be personalized for customers. Includes details about offer type, discount value, and validity window.
+
+offer_id: Unique identifier for the offer (UUID).
+
+offer_title: Title or short label for the offer.
+
+offer_description: Long-form description providing context and details about the offer.
+
+offer_type: Classification of the offer (e.g., Discount, Bundle, BOGO).
+
+discount_percentage: Percentage-based discount applied to the product, if applicable.
+
+fixed_discount_amount: Fixed currency amount discount, if applicable.
+
+effective_date: Date on which the offer becomes active and can be used.
+
+expiration_date: Date on which the offer expires and is no longer valid.
+
+status: Current status of the offer (e.g., Active, Expired, Scheduled).
+
+customer_id: ID of the customer this offer is targeted toward. Nullable if offer is general.
+
+product_id: ID of the product to which the offer applies.
+
+created_at: Timestamp when the offer was created.
+
+updated_at: Timestamp of the latest update to the offer record.

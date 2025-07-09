@@ -1,0 +1,175 @@
+CUSTOMER Table
+
+{
+  "table": "Customer",
+  "description": "Stores information about customers eligible for offers or transactions.",
+  "columns": [
+    {
+      "name": "customer_id",
+      "type": "UUID",
+      "description": "Unique identifier for the customer"
+    },
+    {
+      "name": "full_name",
+      "type": "VARCHAR(255)",
+      "description": "Full name of the customer"
+    },
+    {
+      "name": "email",
+      "type": "VARCHAR(255)",
+      "description": "Unique email address of the customer"
+    },
+    {
+      "name": "phone_number",
+      "type": "VARCHAR(20)",
+      "description": "Optional contact phone number"
+    },
+    {
+      "name": "address",
+      "type": "TEXT",
+      "description": "Full physical mailing address of the customer"
+    },
+    {
+      "name": "customer_segment",
+      "type": "VARCHAR(100)",
+      "description": "Category or classification of the customer"
+    },
+    {
+      "name": "created_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp when the customer record was created"
+    },
+    {
+      "name": "updated_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp of the last update to the customer record"
+    }
+  ]
+}
+
+
+PRODUCT Table
+{
+  "table": "Product",
+  "description": "Contains information about products to which offers can be applied.",
+  "columns": [
+    {
+      "name": "product_id",
+      "type": "UUID",
+      "description": "Unique identifier for the product"
+    },
+    {
+      "name": "product_name",
+      "type": "VARCHAR(255)",
+      "description": "Name of the product"
+    },
+    {
+      "name": "sku",
+      "type": "VARCHAR(100)",
+      "description": "Unique stock keeping unit for the product"
+    },
+    {
+      "name": "category",
+      "type": "VARCHAR(100)",
+      "description": "Category of the product (e.g., Electronics, Apparel)"
+    },
+    {
+      "name": "price",
+      "type": "DECIMAL(10,2)",
+      "description": "Unit price of the product"
+    },
+    {
+      "name": "description",
+      "type": "TEXT",
+      "description": "Detailed textual description of the product"
+    },
+    {
+      "name": "available",
+      "type": "BOOLEAN",
+      "description": "Indicates if the product is available for purchase"
+    },
+    {
+      "name": "created_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp when the product was created"
+    },
+    {
+      "name": "updated_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp of the last update to the product record"
+    }
+  ]
+}
+
+OFFER Table
+{
+  "table": "Offer",
+  "description": "Tracks promotional offers applied to products and optionally targeted to specific customers.",
+  "columns": [
+    {
+      "name": "offer_id",
+      "type": "UUID",
+      "description": "Unique identifier for the offer"
+    },
+    {
+      "name": "offer_title",
+      "type": "VARCHAR(255)",
+      "description": "Title of the offer"
+    },
+    {
+      "name": "offer_description",
+      "type": "TEXT",
+      "description": "Detailed description of the offer"
+    },
+    {
+      "name": "offer_type",
+      "type": "VARCHAR(100)",
+      "description": "Type of the offer (e.g., Discount, Bundle, BOGO)"
+    },
+    {
+      "name": "discount_percentage",
+      "type": "DECIMAL(5,2)",
+      "description": "Percentage discount applied by the offer"
+    },
+    {
+      "name": "fixed_discount_amount",
+      "type": "DECIMAL(10,2)",
+      "description": "Flat discount amount offered"
+    },
+    {
+      "name": "effective_date",
+      "type": "DATE",
+      "description": "Date the offer becomes effective"
+    },
+    {
+      "name": "expiration_date",
+      "type": "DATE",
+      "description": "Date the offer expires"
+    },
+    {
+      "name": "status",
+      "type": "VARCHAR(50)",
+      "description": "Current status of the offer (e.g., Active, Expired)"
+    },
+    {
+      "name": "customer_id",
+      "type": "UUID",
+      "description": "ID of the customer to whom the offer is targeted (nullable)"
+    },
+    {
+      "name": "product_id",
+      "type": "UUID",
+      "description": "ID of the product the offer applies to"
+    },
+    {
+      "name": "created_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp when the offer was created"
+    },
+    {
+      "name": "updated_at",
+      "type": "TIMESTAMP",
+      "description": "Timestamp of the last update to the offer"
+    }
+  ]
+}
